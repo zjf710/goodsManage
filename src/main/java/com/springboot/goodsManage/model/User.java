@@ -13,12 +13,22 @@ public class User {
     private String username;
     // 手机号码
     private String mobile;
+    // 公司名称
+    private String company;
     // 身份证
     private String id_card;
     // 密码
     private String password;
     // 用户类型 1:货主，2:司机
     private int type;
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
 
     public String getId_card() {
         return id_card;

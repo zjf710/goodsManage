@@ -9,10 +9,7 @@ import com.springboot.goodsManage.model.result.ResultUtil;
 import com.springboot.goodsManage.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -27,7 +24,7 @@ public class UserController extends BaseController {
 
     //注册
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public Result setUserInfo(@RequestParam Map<String,Object> userInfoMap) throws BusinessException{
+    public Result setUserInfo(@RequestBody Map<String,Object> userInfoMap) throws BusinessException{
 
         String msg = new UserService(userDao, new User()).setUserInfo(userInfoMap);
 
@@ -36,16 +33,16 @@ public class UserController extends BaseController {
 
     //登录
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Result login(@RequestParam Map<String,Object> userInfoMap) throws BusinessException{
+    public Result login(@RequestBody Map<String,Object> userInfoMap) throws BusinessException{
 
         String msg = new UserService(userDao, new User()).login(userInfoMap);
 
         return ResultUtil.success(msg);
     }
 
-    //登录
+    //
     @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
-    public Result changePassword(@RequestParam Map<String,Object> userInfoMap) throws BusinessException{
+    public Result changePassword(@RequestBody Map<String,Object> userInfoMap) throws BusinessException{
 
         String msg = new UserService(userDao, new User()).changePassword(userInfoMap);
 

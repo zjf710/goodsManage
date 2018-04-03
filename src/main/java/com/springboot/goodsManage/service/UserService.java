@@ -26,6 +26,7 @@ public class UserService {
 
         // 获取参数
         String mobile = userInfoMap.get("mobile").toString();
+        String company = userInfoMap.get("company").toString();
         String idCard = userInfoMap.get("idCard").toString();
         String password = userInfoMap.get("password").toString();
         String confirmPassword = userInfoMap.get("confirmPassword").toString();
@@ -43,13 +44,14 @@ public class UserService {
         // 设置user对象
         user.setUsername(mobile);
         user.setMobile(mobile);
+        user.setCompany(company);
         user.setId_card(idCard);
         user.setPassword(password);
         user.setType(type);
 
         userDao.save(user);
 
-        return "保存成功";
+        return "注册成功";
     }
 
     // 登录方法
@@ -59,9 +61,9 @@ public class UserService {
         String password = userInfoMap.get("password").toString();
         int type = Integer.parseInt(userInfoMap.get("type").toString());
 
-        List<User> user = userDao.getUserByMobileAndPwd(mobile, password, type);
+        User user = userDao.getUserByMobileAndPwd(mobile, password, type);
 
-        if (user.isEmpty()) {
+        if (user == null) {
             String userType = "货主";
 
             if (type == 2) {
@@ -81,13 +83,12 @@ public class UserService {
         String newPassword = userInfoMap.get("newPassword").toString();
         int type = Integer.parseInt(userInfoMap.get("type").toString());
 
-        List<User> userList = userDao.getUserByMobileAndPwd(mobile, oldPassword, type);
+        User user = userDao.getUserByMobileAndPwd(mobile, oldPassword, type);
 
-        if (userList.isEmpty()) {
+        if (user == null) {
             throw new BusinessException("旧密码错误");
         }
 
-        User user = userList.get(0);
         user.setPassword(newPassword);
 
         userDao.save(user);
