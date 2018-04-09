@@ -26,6 +26,7 @@ public class UserService {
 
         // 获取参数
         String mobile = userInfoMap.get("mobile").toString();
+        String username = userInfoMap.get("username").toString();
         String company = userInfoMap.get("company").toString();
         String idCard = userInfoMap.get("idCard").toString();
         String password = userInfoMap.get("password").toString();
@@ -42,7 +43,7 @@ public class UserService {
         }
 
         // 设置user对象
-        user.setUsername(mobile);
+        user.setUsername(username);
         user.setMobile(mobile);
         user.setCompany(company);
         user.setId_card(idCard);

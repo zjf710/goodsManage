@@ -6,15 +6,12 @@ import com.springboot.goodsManage.dao.ProvincesDao;
 import com.springboot.goodsManage.exception.BusinessException;
 import com.springboot.goodsManage.model.Areas;
 import com.springboot.goodsManage.model.Cities;
-import com.springboot.goodsManage.model.Goods;
 import com.springboot.goodsManage.model.Provinces;
 import com.springboot.goodsManage.model.result.Result;
 import com.springboot.goodsManage.model.result.ResultUtil;
 import com.springboot.goodsManage.service.AreasService;
-import com.springboot.goodsManage.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
