@@ -13,7 +13,7 @@ public class Goods {
     private Integer id;
     // 货名
     private String goods_name;
-    // 货源状态 0:已发布 1:被接单 2:进行中 3:已完成 4:货主已确认
+    // 货源状态 0:已发布 1:被接单 2:货主确认接单 3:进行中 4:已完成 5:货主已确认
     private int status;
     // 发布人
     private String publish_man;

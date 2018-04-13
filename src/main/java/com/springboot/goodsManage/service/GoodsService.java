@@ -60,7 +60,7 @@ public class GoodsService {
         goods.setCar_long(carLong);
         goods.setCar_type(carType);
 
-        if(!"".equals(goodsWeight)) {
+        if (!"".equals(goodsWeight)) {
             goods.setGoods_weight(Integer.parseInt(goodsWeight));
         } else {
             goods.setGoods_volume(Integer.parseInt(goodsVolume));
@@ -68,11 +68,11 @@ public class GoodsService {
         goods.setPrice_source(priceSource);
         goods.setLoad_type(loadType);
 
-        if(!"".equals(loadTime)) {
+        if (!"".equals(loadTime)) {
             goods.setLoad_time(Long.parseLong(loadTime));
         }
         goods.setPay_type(payType);
-        if(!"".equals(price)) {
+        if (!"".equals(price)) {
             goods.setPrice(Integer.parseInt(price));
         }
         goods.setComment(comment);
@@ -83,22 +83,22 @@ public class GoodsService {
     }
 
     // 获取订单详情
-    public List<Map<String, Object>> getGoods(Map<String,Object> searchParams) throws BusinessException {
+    public List<Map<String, Object>> getGoods(Map<String, Object> searchParams) throws BusinessException {
 
         String status = searchParams.get("status").toString();
         return goodsDao.findGoodsInfoByStatus(Integer.parseInt(status));
     }
 
     // 获取订单详情
-    public List<Map<String, Object>> getUserGoods(Map<String,Object> searchParams) throws BusinessException {
+    public List<Map<String, Object>> getUserGoods(Map<String, Object> searchParams) throws BusinessException {
 
         String user = searchParams.get("user").toString();
         String type = searchParams.get("userType").toString();
 
         // 货主
-        if("1".equals(type)) {
+        if ("1".equals(type)) {
             return goodsDao.findGoodsInfoByPublishMan(user);
-        } else if("2".equals(type)) {
+        } else if ("2".equals(type)) {
             return goodsDao.findGoodsInfoByOrderTaker(user);
         }
 
@@ -111,11 +111,16 @@ public class GoodsService {
         // 获取参数
         int goodsId = Integer.parseInt(takeGoods.get("id").toString());
         int status = Integer.parseInt(takeGoods.get("status").toString());
+        Object orderTaker = takeGoods.get("orderTaker");
 
         Goods goods = goodsDao.findById(goodsId);
 
-        if(goods == null) {
+        if (goods == null) {
             throw new BusinessException("货源不存在");
+        }
+
+        if (orderTaker != null) {
+            goods.setOrder_taker(orderTaker.toString());
         }
 
         // 修改货源状态
